@@ -1,0 +1,27 @@
+Total Orders = COUNTROWS(Orders)
+Delivered Orders = 
+CALCULATE(COUNTROWS(Shipments), Shipments[DeliveryStatus] = "Delivered")
+On-Time Rate = 
+DIVIDE(
+    CALCULATE(COUNTROWS(Shipments), Shipments[DeliveryStatus] = "Delivered", Shipments[DeliveryDate] <= Shipments[PromisedDate]),
+    CALCULATE(COUNTROWS(Shipments), Shipments[DeliveryStatus] = "Delivered")
+)
+Avg Delivery Days = 
+AVERAGEX(
+    FILTER(Shipments, NOT ISBLANK(Shipments[DeliveryDate])),
+    DATEDIFF(Shipments[ShipmentDate], Shipments[DeliveryDate], DAY)
+)
+Shipping Cost per Order = AVERAGEX(Orders, CALCULATE(SUM(Shipments[ShippingCost])))
+Delayed Orders Count = 
+COUNTROWS(
+    FILTER(Shipments, Shipments[DeliveryStatus] = "Delivered" && Shipments[DeliveryDate] > Shipments[PromisedDate])
+)
+Delivered Orders = 
+CALCULATE(COUNTROWS(Shipments), Shipments[DeliveryStatus] = "Delivered")
+Is Delayed = 
+IF(
+    Shipments[DeliveryStatus] = "Delivered" && 
+    Shipments[DeliveryDate] > Shipments[PromisedDate],
+    "Yes",
+    "No"
+)
