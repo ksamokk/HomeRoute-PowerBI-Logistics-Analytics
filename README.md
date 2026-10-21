@@ -1,70 +1,120 @@
-# HomeRoute | Delivery & Logistics Analytics — Power BI
+# HomeRoute | Delivery & Logistics Analytics in Power BI
 
-**Business Intelligence portfolio project — Ksenia Samokhina**  
-[Русская версия](README_RU.md)
+**End-to-end business intelligence case study · Power BI · DAX · Power Query (M)**  
+**Author:** Ksenia Samokhina  
+**Language:** English | [Русская версия](README_RU.md)
 
 ## Project Overview
 
-HomeRoute is a fictional delivery business. This Power BI project explores order fulfillment, delivery timeliness, carrier performance, shipping costs, and regional differences. The goal is to give operations managers a single place to monitor delivery KPIs and investigate potential logistics bottlenecks.
+HomeRoute is a fictional household-goods delivery company serving retail customers through regional warehouses and third-party carriers. Operations managers need a clear view of delivery reliability, transit time, shipping expenditure, and performance differences across carriers and regions.
 
-## Project Objectives
+I developed a three-page Power BI report to turn order and shipment records into actionable operational metrics and interactive drill-downs. The project is based on the HomeRoute BI case study.
 
-- Track order volume, on-time delivery, average delivery duration, shipping cost per order, and delayed deliveries.
-- Compare carriers and regions to identify where service levels may need attention.
-- Enable interactive exploration by date, region, city, product, carrier, and delivery status.
+## Business Questions
+
+- How many orders are processed, and what share of completed deliveries arrive on time?
+- How long does delivery take on average, and what is the average shipping cost per order?
+- Which carriers account for the most delayed deliveries, and how do shipping costs compare?
+- How does delivery reliability vary by region?
+- Which specific shipments require closer investigation?
+
+## Data & Model
+
+The supplied source files represent a relational logistics dataset. The following source tables were inspected:
+
+| Table | Records | Role |
+|---|---:|---|
+| `Orders` | 1,700 | Order dates, customers, warehouses, regions, shipping classes |
+| `OrderLines` | 3,352 | Ordered products, quantities, unit prices |
+| `Customers` | 720 | Customer segments, cities, regions |
+| `Products` | 50 | Product names, categories, prices |
+| `Categories` | 5 | Product categories |
+| `Carriers` | 5 | Delivery service providers |
+| `Warehouses` | 6 | Fulfillment locations |
+| `Regions` | 8 | Regional reference data |
+| `Calendar` | 375 | Dates from January 1, 2025, to January 10, 2026 |
+| `Shipments` (13 monthly files) | 1,700 | Shipping, promised and actual delivery dates, costs, status |
 
 ## Dashboard Preview
 
-### 1. Delivery overview
-![Delivery overview](screenshots/dashboard-1.png)
+### 1. Delivery Performance Overview
 
-### 2. Carrier and regional analysis
-![Carrier and regional analysis](screenshots/dashboard-2.png)
+![HomeRoute delivery performance dashboard](screenshots/dashboard-1.png)
 
-### 3. Order-level delivery details
-![Order details](screenshots/dashboard-3.png)
+A consolidated view of order volume, delivery timeliness, average delivery days, shipping cost per order, delayed orders by carrier, and regional performance.
+
+### 2. Carrier & Regional Analysis
+
+![HomeRoute carrier and regional analysis](screenshots/dashboard-2.png)
+
+Carrier-focused comparison of shipping costs and on-time delivery by region, with interactive filtering. The screenshot shows a **CityGo-filtered** regional view; its figures must not be interpreted as company-wide regional rates.
+
+### 3. Shipment-Level Details
+
+![HomeRoute order and shipment detail report](screenshots/dashboard-3.png)
+
+A detailed table for investigating individual deliveries, with filters for delivery status, carrier and date.
 
 ## Key KPIs
 
-| Metric | Dashboard value |
+| KPI | Overall dashboard result |
 |---|---:|
-| Total Orders | 1,700 |
-| On-Time Delivery Rate | 84.56% |
-| Average Delivery Days | 4.74 |
-| Shipping Cost per Order | 12.78 |
+| Total Orders | **1,700** |
+| On-Time Delivery Rate | **84.56%** |
+| Average Delivery Time | **4.74 days** |
+| Shipping Cost per Order | **12.78** |
+| Completed Deliveries | **1,619** |
+| Cancelled Shipments | **81** |
+| Delayed Completed Deliveries | **250** |
 
-## Main Findings
+## Findings & Business Interpretation
 
-- **Delivery performance:** 84.56% of delivered shipments are on time according to the dashboard measure. Improving timeliness is a potential operational priority.
-- **Carrier comparison:** The dashboard supports comparing absolute delayed-order counts and shipping costs. Counts should not be treated as delay *rates* without considering each carrier's delivery volume.
-- **Regional analysis:** On-time delivery differs across regions; the interactive carrier/region view helps identify combinations requiring investigation.
-- **Costs:** Shipping cost per order varies by carrier, creating opportunities for a more detailed cost-versus-service comparison.
+**Delivery reliability.** An 84.56% on-time delivery rate means that late delivery is a material service-quality issue worth monitoring. The rate is based on completed deliveries according to the DAX measure.
 
-## What I Implemented
+**Regional differences.** In the overall regional table, the highest visible on-time rate is **North (85.95%)**, while the lowest is **Mountain (82.40%)**. This suggests prioritizing investigation of the weaker-performing regions, rather than assuming every region faces the same challenges.
 
-- Three-page interactive Power BI report with KPI cards, trend charts, carrier comparisons, regional tables, and order-level detail.
-- DAX measures for order counts, on-time rate, delivery duration, shipping costs, and delayed shipments.
-- Power Query (M) steps for importing and transforming shipment files, including data typing, numeric normalization, and duplicate removal.
+**Carrier performance.** The dashboard compares the *number* of delayed deliveries by carrier. Absolute delay counts should not be confused with carrier delay *rates*: a high-volume carrier may have more late shipments without being proportionally less reliable.
 
-## Technologies
+**Cost versus service.** Shipping cost per order varies across carriers. Carrier selection should consider both cost and delivery reliability, rather than optimizing either metric alone.
 
-**Power BI Desktop · DAX · Power Query (M) · Data Modeling · Data Visualization · Logistics Analytics**
+**Filtered-view caveat.** The CityGo view shows a **74.19%** on-time rate for Mountain and **82.05%** for South. These are carrier-filtered results and should not replace the overall regional metrics above.
+
+## Implementation
+
+- **Power BI:** three report pages with KPI cards, time trends, carrier comparisons, regional performance tables and shipment-level records.
+- **DAX:** calculations for total orders, completed deliveries, on-time delivery rate, average delivery days, shipping cost per order, delayed delivery count and a delay flag.
+- **Power Query (M):** folder-based import of monthly shipment files, file combination, type conversion, normalization of shipping-cost decimals and duplicate removal.
+- **Interactive analysis:** slicers and filters for date, region, city, product, carrier and delivery status across relevant report pages.
+
+## Tools & Skills
+
+`Power BI Desktop` · `DAX` · `Power Query (M)` · `Data Modeling` · `Data Cleaning` · `KPI Design` · `Interactive Dashboards` · `Logistics Analytics`
 
 ## Repository Structure
 
-| File | Purpose |
-|---|---|
-| `HomeRoute_Delivery_Analytics.pbix` | Original interactive Power BI report (renamed for the portfolio) |
-| `Dashboards.pdf` | Three-page dashboard export |
-| `screenshots/` | Dashboard images displayed above |
-| `code/measures.dax` | DAX formulas transcribed from the provided document |
-| `code/power_query_shipments.m` | Shipment transformation query from the provided document |
-| `code/POWER_QUERY_NOTE.md` | Source-path and query-validation caveats |
-| `README_RU.md` | Russian-language project description |
+```text
+HomeRoute-PowerBI-Logistics-Analytics/
+├── README.md
+├── README_RU.md
+├── HomeRoute_Delivery_Analytics.pbix
+├── Dashboards.pdf
+├── code/
+│   ├── measures.dax
+│   ├── power_query_shipments.m
+│   └── POWER_QUERY_NOTE.md
+└── screenshots/
+    ├── dashboard-1.png
+    ├── dashboard-2.png
+    └── dashboard-3.png
+```
 
-## How to Open
+## How to Explore
 
-1. Download `HomeRoute_Delivery_Analytics.pbix` and open it in **Power BI Desktop**.
-2. Review the three report pages and interactive filters.
-3. If refreshing the data, configure the data-source paths for your own environment. The source datasets are not included in this repository.
-4. Without Power BI Desktop, view `Dashboards.pdf` or the screenshots above.
+1. Open `HomeRoute_Delivery_Analytics.pbix` with **Power BI Desktop** to explore the interactive report.
+2. Alternatively, view `Dashboards.pdf` or the three screenshots above.
+3. To refresh the model, use the supplied source datasets, place monthly shipment CSVs in one `Shipments` folder, and update local source paths in Power Query.
+4. See `code/measures.dax` and `code/power_query_shipments.m` for the documented calculation and transformation logic.
+
+---
+
+**Portfolio focus:** translating logistics operations data into clear management KPIs, interactive reporting and evidence-based operational questions.
