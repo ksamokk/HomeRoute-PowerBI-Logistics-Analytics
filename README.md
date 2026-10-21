@@ -35,26 +35,6 @@ The supplied source files represent a relational logistics dataset. The followin
 | `Calendar` | 375 | Dates from January 1, 2025, to January 10, 2026 |
 | `Shipments` (13 monthly files) | 1,700 | Shipping, promised and actual delivery dates, costs, status |
 
-## Dashboard Preview
-
-### 1. Delivery Performance Overview
-
-![HomeRoute delivery performance dashboard](screenshots/dashboard-1.png)
-
-A consolidated view of order volume, delivery timeliness, average delivery days, shipping cost per order, delayed orders by carrier, and regional performance.
-
-### 2. Carrier & Regional Analysis
-
-![HomeRoute carrier and regional analysis](screenshots/dashboard-2.png)
-
-Carrier-focused comparison of shipping costs and on-time delivery by region, with interactive filtering. The screenshot shows a **CityGo-filtered** regional view; its figures must not be interpreted as company-wide regional rates.
-
-### 3. Shipment-Level Details
-
-![HomeRoute order and shipment detail report](screenshots/dashboard-3.png)
-
-A detailed table for investigating individual deliveries, with filters for delivery status, carrier and date.
-
 ## Key KPIs
 
 | KPI | Overall dashboard result |
@@ -90,31 +70,38 @@ A detailed table for investigating individual deliveries, with filters for deliv
 
 `Power BI Desktop` · `DAX` · `Power Query (M)` · `Data Modeling` · `Data Cleaning` · `KPI Design` · `Interactive Dashboards` · `Logistics Analytics`
 
-## Repository Structure
-
-```text
-HomeRoute-PowerBI-Logistics-Analytics/
-├── README.md
-├── README_RU.md
-├── HomeRoute_Delivery_Analytics.pbix
-├── Dashboards.pdf
-├── code/
-│   ├── measures.dax
-│   ├── power_query_shipments.m
-│   └── POWER_QUERY_NOTE.md
-└── screenshots/
-    ├── dashboard-1.png
-    ├── dashboard-2.png
-    └── dashboard-3.png
-```
-
 ## How to Explore
 
 1. Open `HomeRoute_Delivery_Analytics.pbix` with **Power BI Desktop** to explore the interactive report.
-2. Alternatively, view `Dashboards.pdf` or the three screenshots above.
-3. To refresh the model, use the supplied source datasets, place monthly shipment CSVs in one `Shipments` folder, and update local source paths in Power Query.
-4. See `code/measures.dax` and `code/power_query_shipments.m` for the documented calculation and transformation logic.
-
----
+2. Alternatively, view `Dashboards.pdf` or the three screenshots below.
+3. Explore the DAX measures and Power Query transformation code using the links below.
 
 **Portfolio focus:** translating logistics operations data into clear management KPIs, interactive reporting and evidence-based operational questions.
+
+## Dashboard Screenshots
+
+### 1. Delivery Performance Overview
+
+![HomeRoute delivery performance dashboard](screenshots/dashboard-1.png)
+
+A consolidated view of order volume, delivery timeliness, average delivery days, shipping cost per order, delayed orders by carrier, and regional performance.
+
+### 2. Carrier & Regional Analysis
+
+![HomeRoute carrier and regional analysis](screenshots/dashboard-2.png)
+
+Carrier-focused comparison of shipping costs and on-time delivery by region, with interactive filtering. The screenshot shows a **CityGo-filtered** regional view; its figures must not be interpreted as company-wide regional rates.
+
+### 3. Shipment-Level Details
+
+![HomeRoute order and shipment detail report](screenshots/dashboard-3.png)
+
+A detailed table for investigating individual deliveries, with filters for delivery status, carrier and date.
+
+## Quick Links
+
+- **[Power BI report (.pbix)](HomeRoute_Delivery_Analytics.pbix)** — interactive report for Power BI Desktop.
+- **[DAX measures](code/measures.dax)** — KPI calculations and delay logic.
+- **[Power Query (M)](code/power_query_shipments.m)** — shipment import and data preparation.
+- **[Dashboard PDF](Dashboards.pdf)** — all three report pages in one document.
+- **[Russian README](README_RU.md)** — project description in Russian.
