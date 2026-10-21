@@ -33,16 +33,12 @@ HomeRoute is a fictional delivery business. This Power BI project explores order
 | Average Delivery Days | 4.74 |
 | Shipping Cost per Order | 12.78 |
 
-*Values are taken from the overall dashboard view in the supplied report. Shipping cost currency is not independently verified.*
-
 ## Main Findings
 
 - **Delivery performance:** 84.56% of delivered shipments are on time according to the dashboard measure. Improving timeliness is a potential operational priority.
 - **Carrier comparison:** The dashboard supports comparing absolute delayed-order counts and shipping costs. Counts should not be treated as delay *rates* without considering each carrier's delivery volume.
 - **Regional analysis:** On-time delivery differs across regions; the interactive carrier/region view helps identify combinations requiring investigation.
 - **Costs:** Shipping cost per order varies by carrier, creating opportunities for a more detailed cost-versus-service comparison.
-
-**Interpretation note:** The source business overview names specific best/worst carriers, but those statements are not fully supported by the unfiltered charts. The README therefore avoids unverified carrier rankings. The 74.19% Mountain and 82.05% South figures in the overview refer to a filtered carrier view, not the overall regional comparison.
 
 ## What I Implemented
 
@@ -72,5 +68,3 @@ HomeRoute is a fictional delivery business. This Power BI project explores order
 2. Review the three report pages and interactive filters.
 3. If refreshing the data, configure the data-source paths for your own environment. The source datasets are not included in this repository.
 4. Without Power BI Desktop, view `Dashboards.pdf` or the screenshots above.
-
-*The `.pbix` file has been preserved from the supplied project and was not independently executed or refreshed in this environment.*
